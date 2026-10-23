@@ -19,20 +19,40 @@
 
 ## 📑 Índice
 
-1. [Introducción y objetivo](#1--introducción-y-objetivo)
-2. [Resultado visible del proyecto](#2--resultado-visible-del-proyecto)
+1. [Tecnologías utilizadas](#1--tecnologías-utilizadas)
+2. [Introducción y objetivo](#2--introducción-y-objetivo)
 3. [Requisitos previos](#3--requisitos-previos)
-4. [Instalación y ejecución](#4--instalación-y-ejecución)
-5. [Base de datos](#5--base-de-datos)
-6. [Funcionalidades y controles](#6--funcionalidades-y-controles)
-7. [Estructura del proyecto y MVC](#7--estructura-del-proyecto-y-mvc)
-8. [Evidencias de migraciones y registros](#8--evidencias-de-migraciones-y-registros)
-9. [Seguridad y datos sensibles](#9--seguridad-y-datos-sensibles)
-10. [Referencias](#10--referencias)
+4. [Resultado visible del proyecto](#4--resultado-visible-del-proyecto)
+5. [Instalación y ejecución](#5--instalación-y-ejecución)
+6. [Base de datos](#6--base-de-datos)
+7. [Funcionalidades y controles](#7--funcionalidades-y-controles)
+8. [Estructura del proyecto y MVC](#8--estructura-del-proyecto-y-mvc)
+9. [Evidencias de migraciones y registros](#9--evidencias-de-migraciones-y-registros)
+10. [Dificultades y soluciones](#10--dificultades-y-soluciones)
+11. [Referencias](#11--referencias)
+12. [Fecha de ejecución e información del estudiante](#12--fecha-de-ejecución-e-información-del-estudiante)
 
 ---
 
-## 1. 📘 Introducción y objetivo
+## 1. 🧰 Tecnologías utilizadas
+
+| Tecnología | Uso en el proyecto |
+|---|---|
+| **PHP 8.3 o superior** | Lenguaje de programación del backend |
+| **Laravel Framework 13.36** | Framework de la aplicación web |
+| **Laravel UI 4.6** | Vistas y rutas de autenticación |
+| **Blade** | Plantillas para las páginas de la aplicación |
+| **Bootstrap 5** | Estilos de los formularios y componentes |
+| **SQLite** | Base de datos de ejemplo configurada en `.env.example` |
+| **MySQL** | Alternativa de base de datos configurable |
+| **Composer** | Instalación y gestión de dependencias PHP |
+| **Node.js, npm y Vite** | Instalación y compilación de recursos frontend |
+| **WampServer y phpMyAdmin** | Entorno local utilizado para ejecutar y administrar la aplicación |
+| **Git y GitHub** | Control de versiones y publicación del proyecto |
+
+---
+
+## 2. 📘 Introducción y objetivo
 
 ### Descripción
 
@@ -61,7 +81,29 @@ La aplicación permite practicar el flujo **Modelo–Vista–Controlador (MVC)**
 
 ---
 
-## 2. 🖼️ Resultado visible del proyecto
+## 3. 📋 Requisitos previos
+
+| Herramienta | Requisito |
+|---|---|
+| **PHP** | 8.3 o superior |
+| **Composer** | Instalado y disponible en el `PATH` de Windows |
+| **Node.js y npm** | Necesarios para instalar y compilar los recursos frontend |
+| **Base de datos** | SQLite para la configuración de ejemplo o MySQL si se configura |
+| **Git** | Necesario para clonar el repositorio |
+| **Windows** | WampServer, XAMPP o Laragon para un entorno local; también se puede usar otro entorno compatible |
+
+Para comprobar las herramientas desde Windows PowerShell:
+
+```powershell
+php -v
+composer --version
+node --version
+npm --version
+```
+
+---
+
+## 4. 🖼️ Resultado visible del proyecto
 
 ### Servidor local
 
@@ -75,7 +117,7 @@ La aplicación puede ejecutarse localmente y visitarse en `http://127.0.0.1:8000
 
 ### Registro
 
-El formulario solicita nombre, correo electrónico y contraseña. La captura con datos ingresados fue protegida antes de incluirse aquí.
+El formulario solicita nombre, correo electrónico y contraseña. Las capturas con datos ingresados se protegieron antes de incluirse aquí.
 
 ![Formulario de registro vacío](docs/img/04-formulario-registro.png)
 
@@ -89,39 +131,16 @@ La ruta `/home` muestra el panel después de iniciar sesión.
 
 ---
 
-## 3. 🧰 Requisitos previos
+## 5. ⚙️ Instalación y ejecución
 
-| Tecnología | Requisito |
-|---|---|
-| **PHP** | 8.3 o superior |
-| **Composer** | Versión compatible con Laravel |
-| **Node.js y npm** | Para instalar y compilar los recursos frontend |
-| **Base de datos** | SQLite para la configuración de ejemplo o MySQL si se configura |
-| **Git** | Para clonar el repositorio |
-
-El proyecto usa Laravel Framework 13.36.0, Laravel UI 4.6.3 y Vite para compilar los recursos frontend.
-
-Para comprobar las herramientas en Windows PowerShell:
-
-```powershell
-php -v
-composer --version
-node --version
-npm --version
-```
-
----
-
-## 4. ⚙️ Instalación y ejecución
-
-### 4.1 Clonar el repositorio
+### 5.1 Clonar el repositorio
 
 ```powershell
 git clone https://github.com/hlemerix/laravel-lab.git
 cd laravel-lab
 ```
 
-### 4.2 Instalar y preparar la aplicación
+### 5.2 Instalar y preparar la aplicación
 
 ```powershell
 composer run setup
@@ -129,7 +148,7 @@ composer run setup
 
 El comando instala las dependencias de PHP, crea `.env` desde `.env.example` si hace falta, genera la clave de la aplicación, ejecuta las migraciones e instala y compila los recursos frontend.
 
-### 4.3 Iniciar el entorno de desarrollo
+### 5.3 Iniciar el entorno de desarrollo
 
 ```powershell
 composer run dev
@@ -159,7 +178,7 @@ Después, abre `http://127.0.0.1:8000` en el navegador.
 
 ---
 
-## 5. 🗄️ Base de datos
+## 6. 🗄️ Base de datos
 
 ### Configuración
 
@@ -176,7 +195,7 @@ php artisan migrate
 
 ### Migraciones incluidas
 
-El proyecto contiene migraciones para usuarios, caché, trabajos en cola y la tabla `productos`. La migración de productos crea actualmente el identificador y las marcas de tiempo; el módulo CRUD de productos todavía no está implementado.
+El proyecto contiene migraciones para usuarios, sesiones, caché, trabajos en cola y la tabla `productos`. La migración de productos crea actualmente el identificador y las marcas de tiempo; el módulo CRUD de productos todavía no está implementado.
 
 ![Estructura de tablas en la base de datos, con identificadores locales protegidos](docs/img/06-estructura-base-datos.png)
 
@@ -190,7 +209,7 @@ php artisan migrate:fresh
 
 ---
 
-## 6. 🎛️ Funcionalidades y controles
+## 7. 🎛️ Funcionalidades y controles
 
 | Funcionalidad | Descripción |
 |---|---|
@@ -205,7 +224,7 @@ La autenticación de las vistas se genera con Laravel UI y las plantillas Blade 
 
 ---
 
-## 7. 🗂️ Estructura del proyecto y MVC
+## 8. 🗂️ Estructura del proyecto y MVC
 
 ```text
 laravel-lab/
@@ -229,35 +248,74 @@ laravel-lab/
 
 ---
 
-## 8. ✅ Evidencias de migraciones y registros
+## 9. ✅ Evidencias de migraciones y registros
 
 La captura de la terminal muestra las migraciones ejecutadas, incluida la migración inicial de productos.
 
 ![Migraciones completadas](docs/img/09-migraciones.png)
 
-La captura de la tabla de usuarios oculta los nombres, correos y hashes de contraseña. No se incluyen contraseñas ni identificadores de sesión en las evidencias.
+La captura de la tabla de usuarios oculta nombres, correos y hashes de contraseña. No se incluyen contraseñas ni identificadores de sesión en las evidencias.
 
 ![Registros de usuarios con datos protegidos](docs/img/08-registros-protegidos.png)
 
 ---
 
-## 9. 🔐 Seguridad y datos sensibles
+## 10. 🛠️ Dificultades y soluciones
 
-- Mantén `.env` fuera del repositorio y nunca pegues credenciales reales en documentación o capturas.
-- Antes de compartir capturas, oculta nombres, correos, contraseñas, hashes, tokens, cookies, direcciones privadas y rutas de usuario.
-- Las imágenes de esta documentación son copias protegidas; los archivos originales no se usan como imágenes del README.
-- En producción, configura `APP_DEBUG=false` y utiliza valores seguros para las variables del entorno.
+### Dificultad 1: Composer no se reconocía como comando
+
+Al intentar instalar Laravel desde el símbolo del sistema, Windows indicó que `composer` no se reconocía como comando interno o externo.
+
+**Solución:** instalar Composer para Windows y comprobar que su ubicación esté agregada al `PATH`. Después, abrir una terminal nueva y verificar la instalación con `composer --version`.
+
+![Composer no estaba disponible en la terminal](docs/img/10-dificultad-composer-path.png)
+
+### Dificultad 2: Permiso denegado al guardar una dependencia
+
+Durante la descarga del proyecto, Composer no pudo escribir el archivo del paquete en su carpeta temporal y mostró `Permission denied`.
+
+**Solución:** comprobar que la cuenta de Windows tenga permisos de escritura en la carpeta temporal y en el proyecto, cerrar procesos que puedan bloquear esos archivos y volver a intentar la instalación. Para este proyecto se continuó con la creación de la aplicación mediante Laravel Installer y luego se ejecutó su flujo de preparación.
+
+![Permiso denegado al guardar el archivo de una dependencia](docs/img/11-dificultad-permisos-composer.png)
+
+### Dificultad 3: No existía la tabla de sesiones
+
+Al abrir la aplicación apareció una excepción de base de datos porque no se había creado la tabla `sessions`, necesaria cuando la aplicación utiliza sesiones almacenadas en la base de datos.
+
+**Solución:** ejecutar `php artisan migrate` para crear las tablas pendientes. Si el esquema local quedó incompleto y se puede borrar toda la información de esa base de desarrollo, se puede usar `php artisan migrate:fresh`; este comando elimina todas las tablas antes de volver a crearlas.
+
+![Excepción de Laravel relacionada con la base de datos](docs/img/12-dificultad-tabla-sesiones.png)
 
 ---
 
-## 10. 📚 Referencias
+## 11. 📚 Referencias
 
 1. Laravel. [Documentación oficial](https://laravel.com/docs).
 2. Laravel. [Instalación](https://laravel.com/docs/installation).
 3. Laravel. [Migraciones](https://laravel.com/docs/migrations).
 4. Laravel UI. [Repositorio oficial](https://github.com/laravel/ui).
-5. Vite. [Guía oficial](https://vite.dev/guide/).
-6. Bootstrap. [Documentación oficial](https://getbootstrap.com/docs/).
+5. Composer. [Documentación](https://getcomposer.org/doc/).
+6. Vite. [Guía oficial](https://vite.dev/guide/).
+7. Bootstrap. [Documentación](https://getbootstrap.com/docs/).
+8. MySQL. [The InnoDB Storage Engine](https://dev.mysql.com/doc/refman/8.4/en/innodb-storage-engine.html).
+
+---
+
+## 12. 📅 Fecha de ejecución e información del estudiante
+
+El laboratorio se realizó el **22 de octubre de 2026**.
+
+<div align="center">
+
+### 🎓 Información del estudiante
+
+Este laboratorio fue desarrollado por:
+
+**Nombre:** Hanna Licona<br>
+**Curso:** Desarrollo Web<br>
+**Instructor del laboratorio:** Ing. Irina Fong
+
+</div>
 
 ---
 
